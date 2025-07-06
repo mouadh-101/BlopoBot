@@ -55,7 +55,7 @@ Before setting up BlopoBot , you'll need:
 ### 1. Clone and Install Dependencies
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/mouadh-101/BlopoBot.git
 cd BlopoBot
 npm install
 ```
