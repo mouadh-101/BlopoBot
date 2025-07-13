@@ -6,6 +6,8 @@ const bloggerService = require("./Services/BloggerService");
 const geminiService = require("./Services/GeminiService");
 const TelegramBot = require("node-telegram-bot-api");
 require("dotenv").config();
+const fs = require("fs");
+const path = require("path");
 
 // EXPRESS APP (auth routes)
 
