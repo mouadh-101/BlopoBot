@@ -28,11 +28,19 @@ app.get("/oauth2callback", async (req, res) => {
   try {
     const { tokens } = await authService.oauth2Client.getToken(code);
     await authService.setTokens(tokens);
-    res.send("Authentication successful! You can now post to Blogger.");
+    const successHtml = fs.readFileSync(path.join(__dirname, "views", "succ.html"), "utf8");
+    res.send(successHtml);
   } catch (error) {
     console.error("OAuth error:", error.message);
-    res.status(500).send("Failed to authenticate.");
+    const errorHtml = fs.readFileSync(path.join(__dirname, "views", "error.html"), "utf8");
+    res.status(500).send(successHtml);
   }
+});
+
+app.get("/", (req, res) => {
+  const indexPath = path.join(__dirname, "views", "index.html");
+  const html = fs.readFileSync(indexPath, "utf-8");
+  res.send(html);
 });
 
 // TELEGRAM BOT LOGIC
@@ -228,6 +236,8 @@ function htmlToTelegramMarkdown(html) {
     .replace(/\s+/g, ' ')
     .trim();
 }
+
+
 
 // START SERVER
 
